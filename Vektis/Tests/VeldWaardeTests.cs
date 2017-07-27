@@ -8,7 +8,7 @@ namespace Vektis.Tests {
         /// </summary>
         [Fact]
         public void WaardeSetterTest() {
-            var w = new VeldWaarde();
+            var w = new VeldWaarde(null, 0);
             var fout = false;
             try {
                 w.Waarde = 0;

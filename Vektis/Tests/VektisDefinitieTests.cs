@@ -16,7 +16,7 @@ namespace Vektis.Tests {
         public void ScaffoldTest() {
             var d = new VektisDefinitie{Versie="9.0"};
             var map = "./";
-            d.Scaffold(map, "Vecozo", new Dictionary<string, string>());
+            d.Scaffold(map, "Vektis.Tests.Mock", new Dictionary<string, string>());
             Assert.True(File.Exists(Path.Combine(map, "Voorlooprecord_9_0.cs")));
         }
     }
