@@ -107,6 +107,9 @@ namespace Vektis {
             regels.Add($"namespace {srcNamespace} {{");
             var classname = ClassnameFromRecordtype(recorddefinitie.Recordtype);
             regels.Add($"\tpublic class {classname}: VektisData {{");
+            regels.Add($"\t\tpublic {classname}(dynamic item = null) {{");
+            regels.Add($"\t\t\tItem = item;");
+            regels.Add("\t\t}");
             foreach(VeldDefinitie d in recorddefinitie.Velddefinities) {
                 regels.Add("\t\t/// <summary>");
                 foreach(var regel in d.Beschrijving.Splits(95)) {
@@ -119,9 +122,6 @@ namespace Vektis {
                     ret = "0";
                 }
                 regels.Add($"\t\tpublic {dt} {d.Naam}() {{");
-                regels.Add($"\t\t\tpublic {d.Naam}(dynamic item = null) {{");
-                regels.Add($"\t\t\t\tItem = item;");
-                regels.Add("\t\t\t}");
                 regels.Add($"\t\t\treturn {ret};");
                 regels.Add("\t\t}");
             }
