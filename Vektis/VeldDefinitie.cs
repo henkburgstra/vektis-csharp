@@ -34,7 +34,18 @@ namespace Vektis {
         public int Lengte { get; set; }
         public string Verplichting { get; set; } = "";
         public int Eindpositie { get; set; }
-        public string Patroon { get; set; } = "";
+        private string _patroon = "";
+        public string Patroon { 
+            get { return _patroon; } 
+            set {
+                if (value == null) {
+                    _patroon = "";
+                }
+                else {
+                    _patroon = value;
+                }
+            } 
+        }
         public string Beschrijving { get; set; } = "";
 
         public override string ToString()
