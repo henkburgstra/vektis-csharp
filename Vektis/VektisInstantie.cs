@@ -32,14 +32,14 @@ namespace Vektis {
             }
             return (from record in Records
                 where record.Definitie.Recordtype == recordtype
-                select 1).ToList().Sum();
+                select 1).Sum();
         }
 
         public int Totaliseer(string recordtype, string veldnaam) {
             return (from record in Records
                 where record.Definitie.Recordtype == recordtype
                 && record.GetVeldWaarde(veldnaam) != null
-                select (int)record.GetVeldWaarde(veldnaam).Waarde).ToList().Sum();
+                select (int)record.GetVeldWaarde(veldnaam).Waarde).Sum();
         }
 
         public RecordInstantie NieuwRecord(string recordtype, VektisData data = null) {

@@ -29,7 +29,7 @@ namespace Vektis {
 
         public string GetBestandsnaam() {
             // TODO: implementatie
-            return "/Users/henkburgstra/projecten/Vektis/ZH308v9.0_BERu2.xls";
+            return "/Users/henkburgstra/projecten/vektis-csharp/Vektis/ZH308v9.0_BERu2.xls";
         }
 
         public void LaadSpecificatie() {
@@ -109,7 +109,9 @@ namespace Vektis {
             regels.Add($"\tpublic class {classname}: VektisData {{");
             foreach(VeldDefinitie d in recorddefinitie.Velddefinities) {
                 regels.Add("\t\t/// <summary>");
-                regels.Add($"\t\t/// {d.Beschrijving}");  // TODO: opsplitsen in regels
+                foreach(var regel in d.Beschrijving.Splits(95)) {
+                    regels.Add($"\t\t/// {regel}");
+                }
                 regels.Add("\t\t/// </summary>");
                 var dt = d.CSharpDatatype();
                 var ret = "\"\"";
@@ -117,6 +119,9 @@ namespace Vektis {
                     ret = "0";
                 }
                 regels.Add($"\t\tpublic {dt} {d.Naam}() {{");
+                regels.Add($"\t\t\tpublic {d.Naam}(dynamic item = null) {{");
+                regels.Add($"\t\t\t\tItem = item;");
+                regels.Add("\t\t\t}");
                 regels.Add($"\t\t\treturn {ret};");
                 regels.Add("\t\t}");
             }

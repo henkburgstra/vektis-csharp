@@ -3,6 +3,10 @@ using Vektis;
 
 namespace Vektis.Tests.Mock {
 	public class Voorlooprecord_9_0: VektisData {
+
+		public Voorlooprecord_9_0(dynamic item = null) {
+			Item = item;
+		}
 		/// <summary>
 		/// Identificatie van het soort record in een externe-integratiebericht.
 		/// </summary>

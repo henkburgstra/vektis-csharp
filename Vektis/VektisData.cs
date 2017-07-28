@@ -5,6 +5,9 @@ namespace Vektis {
     public class VektisData {
         public dynamic Item { get; set; }
         
+        public VektisData(dynamic item = null) {
+            Item = item;
+        }
         public bool HasMethod(string methodName) {
             return GetType().GetMethod(methodName) != null;
         }
