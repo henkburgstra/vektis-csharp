@@ -59,6 +59,10 @@ namespace Vektis {
                         return FormatN(Vektis.Datum(waarde));
                     }
                 }
+                if (waarde is String) {
+                    Int32.TryParse(waarde, out int x);
+                    waarde = x;
+                }
                 return FormatN(waarde);
             }
             else {
