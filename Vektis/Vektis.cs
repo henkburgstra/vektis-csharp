@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Vektis {
     public static class Extensions {
@@ -26,8 +27,18 @@ namespace Vektis {
         }
     }
     class Vektis {
-        public static string Datum(string input) {
-            return input;
+        public static readonly Regex reDdmmjjjj = new Regex(@"^(\d{1,2})-(\d{1,2})-(\d{4})$");
+        public static readonly Regex reJjjjmmdd = new Regex(@"^(\d{4})-(\d{1,2})-(\d{1,2})$");
+        public static int Datum(string input) {
+            var match = reDdmmjjjj.Match(input);
+            if (match.Success) {
+                return Int32.Parse($"{match.Groups[3].ToString()}{match.Groups[2].ToString().PadLeft(2, '0')}{match.Groups[1].ToString().PadLeft(2, '0')}");
+            }
+            match = reJjjjmmdd.Match(input);
+            if (match.Success) {
+                return Int32.Parse($"{match.Groups[1].ToString()}{match.Groups[2].ToString().PadLeft(2, '0')}{match.Groups[3].ToString().PadLeft(2, '0')}");
+            }
+            return 0;
         }
     }
 }

@@ -43,7 +43,8 @@ namespace Vektis {
         }
 
         public string FormatN(int waarde) {
-            return waarde.ToString().PadLeft(Lengte).Replace(' ', '0');
+            return waarde.ToString($"D{Lengte}");
+            //return waarde.ToString().PadLeft(Lengte).Replace(' ', '0');
         }
 
         public string FormatAN(string waarde) {
@@ -51,9 +52,18 @@ namespace Vektis {
             return waarde.PadRight(Lengte);
         }
 
-        public string Format(string waarde) {
-            // TODO
-            return waarde;
+        public string Format(dynamic waarde) {
+            if (Veldtype == "N") {
+                if (Patroon == "EEJJMMDD") {
+                    if (waarde is String) {
+                        return FormatN(Vektis.Datum(waarde));
+                    }
+                }
+                return FormatN(waarde);
+            }
+            else {
+                return FormatAN(waarde.ToString());
+            }
         }
         
         public string CSharpDatatype() {

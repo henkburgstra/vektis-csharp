@@ -32,7 +32,7 @@ namespace Vektis {
         }
 
         public override string ToString() {
-            return String.Join("", from veldwaarde in Veldwaarden select veldwaarde.Waarde.ToString());
+            return String.Join("", from veldwaarde in Veldwaarden select veldwaarde.ToString());
         }
 
         public void AddVeldWaarde(string naam, VeldWaarde veldwaarde) {
