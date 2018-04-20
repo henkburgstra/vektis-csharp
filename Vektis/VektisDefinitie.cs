@@ -28,8 +28,8 @@ namespace Vektis {
         }
 
         public string GetBestandsnaam() {
-            // TODO: implementatie
-            return "/Users/henkburgstra/projecten/vektis-csharp/Vektis/ZH308v9.0_BERu2.xls";
+            // TODO: betere implementatie
+            return $"{Path.GetFullPath(@"..\..\..")}/ZH308v9.0_BERu2.xls";
         }
 
         public void LaadSpecificatie() {
@@ -37,8 +37,9 @@ namespace Vektis {
             var skipSheets = 0;
             var skipRows = 0;
             var colspec = Config.Colspec;
+            var bestandsnaam = GetBestandsnaam();
 
-            using (var stream = File.Open(GetBestandsnaam(), FileMode.Open, FileAccess.Read)) {
+            using (var stream = File.Open(bestandsnaam, FileMode.Open, FileAccess.Read)) {
 
                 using (var reader = ExcelReaderFactory.CreateReader(stream)) {
 
